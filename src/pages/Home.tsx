@@ -4,6 +4,7 @@ import Button from "@/componnents/Button";
 import Card from "@/componnents/Card";
 import { getConnection } from "@/config/connection";
 import { substrAddress } from "@/utils/handleString";
+import { mapChainIdToChainName } from "@/config/network/chainInfo";
 
 function Home() {
   const { orderedConnections } = useOrderedConnections();
@@ -22,6 +23,11 @@ function Home() {
   if (isActive && account && chainId && connection) {
     const connectionInfo = connection?.getProviderInfo();
     const { name, icon } = connectionInfo;
+
+    const chainName =
+      chainId in mapChainIdToChainName
+        ? mapChainIdToChainName[chainId as keyof typeof mapChainIdToChainName]
+        : null;
     return (
       <div className="h-[450px] w-[340px]">
         <Card
@@ -30,7 +36,11 @@ function Home() {
           <div className=" text-sm">
             <h3 className="mt-3 text-2xl">Connected</h3>
             <p className="flex-between mt-3">
-              ChainId <span className="font-bold"> {chainId} </span>
+              ChainId{" "}
+              <span className="font-bold">
+                {" "}
+                {chainId} {chainName ? `(${chainName})` : ""}{" "}
+              </span>
             </p>
             <p className="flex-between mt-3">
               Connection Type
