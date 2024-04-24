@@ -1,6 +1,7 @@
 import { Connection, ConnectionType, ProviderInfo } from "./types";
 import { EIP6963 } from "./eip6963";
 import { initializeConnector } from "@web3-react/core";
+import { Connector } from "@web3-react/types";
 
 function onError(error: Error) {
   console.debug(`web3-react error: ${error}`);
@@ -41,3 +42,20 @@ export const eip6963Connection: InjectedConnection = {
 };
 
 export const connections = [eip6963Connection];
+
+export function getConnection(c: Connector | ConnectionType) {
+  if (c instanceof Connector) {
+    const connection = connections.find(
+      (connection) => connection.connector === c,
+    );
+    if (!connection) {
+      throw Error("unsupported connector");
+    }
+    return connection;
+  } else {
+    switch (c) {
+      case ConnectionType.EIP_6963_INJECTED:
+        return eip6963Connection;
+    }
+  }
+}

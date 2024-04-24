@@ -2,13 +2,15 @@ import React from "react";
 
 export default function Button({
   onClick,
+  className,
   children,
 }: {
   onClick?: () => void;
+  className?: string;
   children: React.ReactNode;
 }) {
   return (
-    <div>
+    <div className={className}>
       <div
         className="group relative inline-block cursor-pointer focus:outline-none focus:ring"
         onClick={onClick}

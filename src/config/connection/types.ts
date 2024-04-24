@@ -31,6 +31,7 @@ export interface Connection {
 
 export interface RecentConnectionMeta {
   type: ConnectionType;
+  walletName: string;
   rdns?: string; // rdns usage reference: https://eips.ethereum.org/EIPS/eip-6963#provider-info
   address?: string;
   ENSName?: string;

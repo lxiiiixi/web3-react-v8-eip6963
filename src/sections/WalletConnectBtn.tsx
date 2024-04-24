@@ -1,5 +1,6 @@
 import Button from "@/componnents/Button";
 import { Connection } from "@/config/connection/types";
+import { useRecentConnection } from "@/config/connection/useRecentConnection";
 import { useActivationState } from "@/hooks/useTryActivate";
 import { useWeb3React } from "@web3-react/core";
 
@@ -10,10 +11,14 @@ export default function WalletConnectBtn({
 }) {
   const { name, icon } = connection.getProviderInfo();
   const { chainId } = useWeb3React();
-  const { activationState, tryActivation } = useActivationState();
+  const { tryActivation } = useActivationState();
+  const { setRecentConnectionMeta } = useRecentConnection();
 
   const onSuccessfunction = () => {
-    console.log("success");
+    setRecentConnectionMeta({
+      type: connection.type,
+      walletName: name,
+    });
   };
 
   return (
