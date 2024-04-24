@@ -1,32 +1,25 @@
-# xx-react-template
+# Prerequisites
 
-## Version
 
-- Node: v18.17.0
-- Yarn: v3.6.3
 
-##
+- web3-react
+- eip6963
 
-- FrameWork: React + Typescript + Vite + ReactRouterV6
-- UI: Scss + Tailwindcss
-  - Tailwind Plugins:
-    - `tailwindcss-debug-screens`
-    - `@tailwindcss/typography`
-    - `prettier-plugin-tailwindcss` - https://tailwindcss.com/blog/automatic-class-sorting-with-prettier
-- Code specification: Prettier + Eslint
 
-# Procedure
 
-```sh
-# Install dependencies
-yarn
 
-# Start Dev
-yarn dev
 
-# Preview from mobile phone => will get a local IP address
-yarn run dev --host
+# Guide
 
-# build
-yarn run build
+## 1. 安装
+
+```js
+yarn add @web3-react/core @web3-react/eip1193
 ```
+
+## 2. 创建一个 Provider
+
+
+
+
+
