@@ -20,9 +20,9 @@
 
     /* Linting */
     "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noUnusedLocals": false, // 不报告未使用的本地变量
+    "noUnusedParameters": false, // 不报告未使用的参数
+    "noFallthroughCasesInSwitch": true,
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]
