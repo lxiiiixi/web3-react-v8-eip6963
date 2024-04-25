@@ -7,7 +7,6 @@ import {
 } from "react-router-dom";
 import routes from "@/config/router";
 import Web3Provider from "@/sections/Web3provider";
-import { useEagerlyConnect } from "./config/connection/useEagerlyConnect";
 
 function RouterApp() {
   const location = useLocation();
@@ -39,7 +38,6 @@ function RouterApp() {
 }
 
 function App() {
-  useEagerlyConnect();
   return (
     <div
       className={process.env.NODE_ENV === "development" ? "debug-screens" : ""}

@@ -5,12 +5,15 @@ import Card from "@/componnents/Card";
 import { getConnection } from "@/config/connection";
 import { substrAddress } from "@/utils/handleString";
 import { CHAIN_IDS_TO_NAMES } from "@/config/network/chainInfo";
+import { useEagerlyConnect } from "@/config/connection/useEagerlyConnect";
 
 function Home() {
   const { orderedConnections } = useOrderedConnections();
   const { isActive, isActivating, account, chainId, connector } =
     useWeb3React();
   const connection = getConnection(connector);
+
+  useEagerlyConnect();
 
   // console.log(activationState);
   console.log(useWeb3React());

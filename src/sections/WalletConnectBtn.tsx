@@ -9,7 +9,7 @@ export default function WalletConnectBtn({
 }: {
   connection: Connection;
 }) {
-  const { name, icon } = connection.getProviderInfo();
+  const { name, icon, rdns } = connection.getProviderInfo();
   const { chainId } = useWeb3React();
   const { tryActivation } = useActivationState();
   const { setRecentConnectionMeta } = useRecentConnection();
@@ -18,6 +18,7 @@ export default function WalletConnectBtn({
     setRecentConnectionMeta({
       type: connection.type,
       walletName: name,
+      rdns: rdns,
     });
   };
 
