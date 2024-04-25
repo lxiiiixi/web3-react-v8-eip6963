@@ -7,16 +7,24 @@ const useBlockNumber = () => {
 
   useEffect(() => {
     if (!provider) return;
+
+    const handleBolock = (blockNumber: number) => {
+      setBlockNumber(blockNumber);
+    };
+
     provider
       .getBlockNumber()
       .then((res) => {
-        setBlockNumber(res);
+        handleBolock(res);
       })
-      .catch((error) => console.error(`Failed to get block number`, error));
-    provider.on("block", (blockNumber) => {
-      // console.log("New Block:", blockNumber);
-      setBlockNumber(blockNumber);
-    });
+      .catch((error) => {
+        console.error(`Failed to get block number`, error);
+      });
+
+    provider.on("block", handleBolock);
+    return () => {
+      provider.removeListener("block", handleBolock);
+    };
   }, [provider]);
   return blockNumber;
 };

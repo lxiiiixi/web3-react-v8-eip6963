@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { useInjectedProviderDetails } from "@/config/connection/eip6963/providers";
-import { eip6963Connection } from "@/config/connection";
+import { eip6963Connection } from "@/config/connection/connections/eip6963Connection";
 import { Connection } from "@/config/connection/types";
 import WalletConnectBtn from "@/sections/WalletConnectBtn";
 

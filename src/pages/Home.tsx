@@ -4,7 +4,7 @@ import Button from "@/componnents/Button";
 import Card from "@/componnents/Card";
 import { getConnection } from "@/config/connection";
 import { substrAddress } from "@/utils/handleString";
-import { mapChainIdToChainName } from "@/config/network/chainInfo";
+import { CHAIN_IDS_TO_NAMES } from "@/config/network/chainInfo";
 
 function Home() {
   const { orderedConnections } = useOrderedConnections();
@@ -13,7 +13,8 @@ function Home() {
   const connection = getConnection(connector);
 
   // console.log(activationState);
-  // console.log(useWeb3React());
+  console.log(useWeb3React());
+  // console.log(useActiveWeb3React());
 
   const handleDisconnect = () => {
     connector.deactivate?.();
@@ -25,8 +26,8 @@ function Home() {
     const { name, icon } = connectionInfo;
 
     const chainName =
-      chainId in mapChainIdToChainName
-        ? mapChainIdToChainName[chainId as keyof typeof mapChainIdToChainName]
+      chainId in CHAIN_IDS_TO_NAMES
+        ? CHAIN_IDS_TO_NAMES[chainId as keyof typeof CHAIN_IDS_TO_NAMES]
         : null;
     return (
       <div className="h-[450px] w-[340px]">

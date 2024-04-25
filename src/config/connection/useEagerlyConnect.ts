@@ -2,10 +2,9 @@ import { Connector } from "@web3-react/types";
 import { ConnectionType } from "./types";
 import { useEffect } from "react";
 import { useRecentConnection } from "./useRecentConnection";
+import { getConnection } from ".";
 
 async function connect(connector: Connector, type: ConnectionType) {
-  // We intentionally omit setting a non-ok status on this trace, as it is expected to fail.
-  // The trace here is intended to capture duration and throughput, not status.
   console.log("Tring to connect by", type, "......");
   try {
     if (connector.connectEagerly) {
@@ -22,13 +21,25 @@ async function connect(connector: Connector, type: ConnectionType) {
 
 export const useEagerlyConnect = () => {
   const { getRecentConnectionMeta } = useRecentConnection();
-  const connection = getRecentConnectionMeta();
-  console.log("Last connected by", connection?.walletName);
+  const connectionMeta = getRecentConnectionMeta();
+  console.log("Last connected by", connectionMeta, connectionMeta?.walletName);
+
+  const networkConnection = getConnection(ConnectionType.NETWORK);
+  if (networkConnection && networkConnection.connector) {
+    console.log("Try to connect with network connection....");
+    connect(networkConnection.connector, ConnectionType.NETWORK);
+  }
 
   useEffect(() => {
-    // if (connection?.connector && connection.connector instanceof Connector) {
-    //   connect(connection?.connector, ConnectionType.EIP_6963_INJECTED);
-    // }
+    // try to connect with the most recent connection
+    if (connectionMeta && connectionMeta?.type) {
+      const connection = getConnection(connectionMeta?.type);
+      if (connection && connection.connector) {
+        connect(connection.connector, ConnectionType.EIP_6963_INJECTED);
+      } else {
+        console.warn("unsupported connector");
+      }
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 };

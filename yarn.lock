@@ -1104,6 +1104,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@web3-react/network@npm:^8.2.3":
+  version: 8.2.3
+  resolution: "@web3-react/network@npm:8.2.3"
+  dependencies:
+    "@ethersproject/providers": ^5
+    "@web3-react/types": ^8.2.3
+  checksum: e6d94a34103e6df3e02668db388de9c4098755e60658901e3b946ad08145aa2ca7bac1c8d40c45a4af8b82c19e083178f6006964297fb8a2f7a13e1a98c27e48
+  languageName: node
+  linkType: hard
+
 "@web3-react/store@npm:^8.2.3":
   version: 8.2.3
   resolution: "@web3-react/store@npm:8.2.3"
@@ -3823,6 +3833,7 @@ __metadata:
     "@vitejs/plugin-react-swc": ^3.6.0
     "@web3-react/core": ^8.2.3
     "@web3-react/eip1193": ^8.2.3
+    "@web3-react/network": ^8.2.3
     autoprefixer: ^10.4.19
     eslint: ^8.57.0
     eslint-plugin-react-hooks: ^4.6.0
